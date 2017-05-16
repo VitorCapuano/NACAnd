@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
 
 public class ValidaLoginService extends Service {
     public ValidaLoginService() {
@@ -32,11 +33,13 @@ public class ValidaLoginService extends Service {
         Bundle params = intent.getExtras();
         String usuario = params.getString("usuario");
         String senha = params.getString("senha");
+        String final_date = params.getString("final_date");
+        String fim = params.getString("fim");
 
         if(usuario.equalsIgnoreCase("ps@fiap.com.br") && senha.equalsIgnoreCase("10")) {
-            nb.setContentText("Login válido");
+            nb.setContentText("Login OK "+final_date + " " + fim);
         } else {
-            nb.setContentText("Login inválido");
+            nb.setContentText("Login inválido "+final_date + " " + fim);
         }
 
         nm.notify(100, nb.build());
